@@ -1,1 +1,103 @@
-# add
+- 库  库名没有想好
+  - 表
+    - user_info
+      - 唯一 user_id INT NOT NULL AUTO_INCREMENT
+      - 账号 name VARCHAR(1000)
+      - 密码 pwd VARCHAR(1000)
+    - polaris_news_list
+      - 唯一值   news_id  INT NOT NULL AUTO_INCREMENT
+      - 新闻标题 news_title VARCHAR(1000)
+      - 新闻动态 news_type  TINYINT 小整数
+        - 公司新闻 0
+        - 行业动态 1
+        - 公司历程 2
+      - 新闻时间 news_time INTEGER 大整数值
+      - 新闻描述 news_description VARCHAR(1000)
+      - 外部链接 external_link VARCHAR(1000)
+      - 新闻图片 news_img VARCHAR(1000)
+      - 首页置顶 news_top bit 0 1
+      - 首页图片 news_top_img VARCHAR(1000)
+      - 虚拟删除 isValid bit 0 1
+- 全局
+  - code 错误码
+    0 成功
+    1 失败 
+- 接口
+  - 登录
+    - 路径 /login
+    - 类型 post
+    - 参数 name 名称 pwd 密码
+    - 响应结果  { code: 0, content: '', message: '' }
+  - 发布新闻动态
+    - 路径 /polaris/distributeNews
+    - 类型 post
+    - 参数 
+      - news_title 新闻标题
+      - news_type 新闻动态
+        - 公司新闻 0
+        - 行业动态 1
+        - 公司历程 2
+      - news_time 新闻时间 
+      - news_description 新闻描述 
+      - external_link 外部链接 
+      - news_img 新闻图片 
+      - news_top 首页置顶 
+      - news_top_img 首页图片 
+    - 响应结果  { code: 0, content: '', message: '' }
+  - 新闻动态列表
+    - 路径 /polaris/newsList
+    - 类型 post
+    - 参数 
+      - news_type 新闻动态
+        - 公司新闻 0
+        - 行业动态 1
+        - 公司历程 2
+      - star_tTime 开始时间
+      - end_time 结束时间
+      - page 当前页
+      - rows 条 
+    - 响应结果  { code: 0, content: [], message: '' }
+      - content 内容
+        - news_title 新闻标题
+        - news_type 新闻动态
+          - 公司新闻 0
+          - 行业动态 1
+          - 公司历程 2
+        - news_time 新闻时间 
+        - news_description 新闻描述 
+        - external_link 外部链接 
+        - news_img 新闻图片 
+        - news_top 首页置顶 
+        - news_top_img 首页图片 
+        - news_id 唯一标识
+  - 修改新闻动态
+    - 路径 /polaris/modifyNews
+    - 类型 post
+    - 参数 
+      - news_title 新闻标题
+      - news_type 新闻动态
+        - 公司新闻 0
+        - 行业动态 1
+        - 公司历程 2
+      - news_time 新闻时间 
+      - news_description 新闻描述 
+      - external_link 外部链接 
+      - news_img 新闻图片 
+      - news_top 首页置顶 
+      - news_top_img 首页图片 
+      - news_id 唯一标识
+    - 响应结果  { code: 0, content: '', message: '' }
+    - 删除新闻动态
+      - 路径 /polaris/deleteNews
+      - 类型 post
+      - 参数 
+        - news_id 唯一标识
+      - 响应结果  { code: 0, content: '', message: '' }
+    - 置顶新闻动态
+      - 路径 /polaris/topping
+      - 类型 post
+      - 参数 
+        - news_id 唯一标识
+      - 响应结果  { code: 0, content: '', message: '' }
+
+
